@@ -64,7 +64,7 @@ npm install
 Launch write this to launch this order to launch the application to test the application in its development environment
 
 ```
-npm run dist
+npm run dev
 ```
 
 If you want to have an executable version of the application (.exe) write this
