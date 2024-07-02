@@ -13,13 +13,14 @@ function createWindow() {
   const window = new BrowserWindow({
     width,
     height,
-    //  change to false to use AppBar
+    minHeight: height,
+    minWidth: width,
     frame: false,
-    show: true,
-    resizable: false,
-    fullscreenable: true,
     webPreferences: {
-      preload: join(__dirname, 'preload.js')
+      preload: join(__dirname, 'preload.js'),
+      nodeIntegration: true,
+      contextIsolation: true,
+      devTools: true
     }
   });
 
@@ -49,6 +50,8 @@ function createWindow() {
   ipcMain.on('close', () => {
     window.close();
   });
+
+  return window;
 }
 
 // This method will be called when Electron has finished
@@ -75,7 +78,7 @@ app.on('window-all-closed', () => {
 // code. You can also put them in separate files and require them here.
 
 // listen the channel `message` and resend the received message to the renderer process
-ipcMain.on('message', (event: IpcMainEvent, message: any) => {
+ipcMain.on('message', (event: IpcMainEvent, message: string) => {
   console.log(message);
   setTimeout(() => event.sender.send('message', 'Hi from electron'), 500);
 });

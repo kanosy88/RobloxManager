@@ -1,11 +1,9 @@
-const Notify = (title: string, Body: string) => {
-  const NotificationIcon = './assets/icons/Icon-Electron.png';
+const Icon = './assets/icons/AppIcon.png';
 
+const Notify = (title: string, Body: string) => {
   const NotificationOption = {
     body: Body,
-    icon: NotificationIcon,
-    badge: 'https://developer.mozilla.org/en-US/docs/Web/API/Notification/badge',
-    tag: 'notification-sample'
+    icon: Icon
   };
 
   Notification.requestPermission().then((result) => {
