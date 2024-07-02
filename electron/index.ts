@@ -4,6 +4,7 @@ import { join } from 'path';
 // Packages
 import { BrowserWindow, app, ipcMain, IpcMainEvent } from 'electron';
 import isDev from 'electron-is-dev';
+import { fetchUserData } from './RobloxApi';
 
 const height = 600;
 const width = 800;
@@ -20,7 +21,8 @@ function createWindow() {
       preload: join(__dirname, 'preload.js'),
       nodeIntegration: true,
       contextIsolation: true,
-      devTools: true
+      devTools: true,
+      webSecurity: false
     }
   });
 
@@ -79,6 +81,12 @@ app.on('window-all-closed', () => {
 
 // listen the channel `message` and resend the received message to the renderer process
 ipcMain.on('message', (event: IpcMainEvent, message: string) => {
-  console.log(message);
-  setTimeout(() => event.sender.send('message', 'Hi from electron'), 500);
+  setTimeout(() => event.sender.send(message, 'Hi from electron'), 500);
+});
+
+ipcMain.on('FetchUserData', async (event: IpcMainEvent, RobloxCookie: string) => {
+  const userData = await fetchUserData(RobloxCookie);
+  if (!userData) return;
+
+  event.sender.send('FetchUserData', userData);
 });

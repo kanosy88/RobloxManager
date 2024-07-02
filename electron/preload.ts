@@ -1,4 +1,5 @@
 import { ipcRenderer, contextBridge } from 'electron';
+
 declare global {
   interface Window {
     Main: typeof api;
@@ -35,6 +36,10 @@ const api = {
    */
   on: (channel: string, callback: (data: any) => void) => {
     ipcRenderer.on(channel, (_, data) => callback(data));
+  },
+
+  removeAllListeners: (channel: string) => {
+    ipcRenderer.removeAllListeners(channel);
   }
 };
 contextBridge.exposeInMainWorld('Main', api);
