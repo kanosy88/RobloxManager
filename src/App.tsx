@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import AppBar from './AppBar';
-
-const NotificationIcon = './assets/icons/Icon-Electron.png';
+import Notify from './components/Notify';
 
 function App() {
   console.log(window.ipcRenderer);
@@ -9,19 +8,6 @@ function App() {
   const [isOpen, setOpen] = useState(false);
   const [isSent, setSent] = useState(false);
   const [fromMain, setFromMain] = useState<string | null>(null);
-
-  const Notify = (title: string, Body: string) => {
-    const NotificationOption = {
-      body: Body,
-      icon: NotificationIcon,
-      badge: 'https://developer.mozilla.org/en-US/docs/Web/API/Notification/badge',
-      tag: 'notification-sample'
-    };
-
-    Notification.requestPermission().then((result) => {
-      if (result === 'granted') return new Notification(title, NotificationOption);
-    });
-  };
 
   const handleMinimize = () => {
     if (window.Main) {
