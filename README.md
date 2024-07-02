@@ -3,13 +3,11 @@
  <img width=200px height=200px src="https://i.imgur.com/O5EXdj2.jpeg" alt="Project logo"></a>
 </p>
 
-<h3 align="center">roblox-manager</h3>
+<h3 align="center">Roblox Manager</h3>
 
 <div align="center">
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/pulls)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
 </div>
@@ -93,4 +91,4 @@ See also the list of [contributors](https://github.com/kanosy88/RobloxManager/gr
 
 ## 🎉 Acknowledgements <a name = "acknowledgement"></a>
 
-- [@LxstCxn](https://github.com/kanosy88) - Idea
+- [@LxstCxn](https://github.com/LxstCxn/Roblox-notify-tracker) - Idea
