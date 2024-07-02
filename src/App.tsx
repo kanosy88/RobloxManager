@@ -10,16 +10,16 @@ function App() {
   const [isSent, setSent] = useState(false);
   const [fromMain, setFromMain] = useState<string | null>(null);
 
-  const Notify = (title: string, body: string) => {
-    const notification_options: NotificationOptions = {
-      body: 'This is a Notification',
+  const Notify = (title: string, Body: string) => {
+    const NotificationOption = {
+      body: Body,
       icon: NotificationIcon,
       badge: 'https://developer.mozilla.org/en-US/docs/Web/API/Notification/badge',
       tag: 'notification-sample'
     };
 
     Notification.requestPermission().then((result) => {
-      if (result === 'granted') return new Notification(title, notification_options);
+      if (result === 'granted') return new Notification(title, NotificationOption);
     });
   };
 
