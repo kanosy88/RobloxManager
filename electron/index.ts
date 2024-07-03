@@ -4,7 +4,7 @@ import { join } from 'path';
 // Packages
 import { BrowserWindow, app, ipcMain } from 'electron';
 import isDev from 'electron-is-dev';
-import { fetchUserData } from './RobloxApi';
+import { fetchFriends, fetchUserData } from './RobloxApi';
 
 const height = 600;
 const width = 800;
@@ -52,7 +52,7 @@ function createWindow() {
   });
 
   ipcMain.on('close', () => {
-    window.close();
+    mainWindow.close();
   });
 
   return mainWindow;
@@ -78,8 +78,9 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit();
 });
 
-async function sender(channel: string, ...args: any[]) {
-  mainWindow.webContents.send(channel, args);
+async function sender(channel: string, ...args: unknown[]) {
+  if (!mainWindow) return;
+  mainWindow.webContents.send(channel, ...args);
 }
 
 sender('', undefined); // To avoid unused variable error
@@ -91,4 +92,9 @@ ipcMain.on('FetchUserData', async (event, RobloxCookie: string) => {
   if (!userData) return;
 
   event.sender.send('FetchUserData', userData);
+
+  const friends = await fetchFriends(userData.id);
+  if (!friends) return;
+
+  event.sender.send('FetchFriends', friends);
 });
