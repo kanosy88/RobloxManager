@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import AppBar from './AppBar';
 import Notify from './components/Notify';
 import { UserData } from './types/type';
@@ -16,9 +16,10 @@ function App() {
 
   useEffect(() => {
     if (!listenerAttached.current) {
-      window.Main.on('FetchUserData', (UserData: UserData) => {
-        console.log(UserData);
-        Notify('Roblox Status', `Successfully fetched ${UserData.displayName} data`);
+      window.Main.on('FetchUserData', (_UserData: UserData) => {
+        // TODO: Make error handling
+        console.log(_UserData);
+        Notify('RobloxManager', `Successfully fetched ${_UserData.displayName} data`);
       });
       listenerAttached.current = true;
     }

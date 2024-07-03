@@ -78,12 +78,6 @@ app.on('window-all-closed', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
-
-// listen the channel `message` and resend the received message to the renderer process
-ipcMain.on('message', (event: IpcMainEvent, message: string) => {
-  setTimeout(() => event.sender.send(message, 'Hi from electron'), 500);
-});
-
 ipcMain.on('FetchUserData', async (event: IpcMainEvent, RobloxCookie: string) => {
   const userData = await fetchUserData(RobloxCookie);
   if (!userData) return;
