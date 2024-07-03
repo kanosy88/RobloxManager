@@ -2,16 +2,18 @@
 import { join } from 'path';
 
 // Packages
-import { BrowserWindow, app, ipcMain, IpcMainEvent } from 'electron';
+import { BrowserWindow, app, ipcMain } from 'electron';
 import isDev from 'electron-is-dev';
 import { fetchUserData } from './RobloxApi';
 
 const height = 600;
 const width = 800;
 
+let mainWindow: BrowserWindow;
+
 function createWindow() {
   // Create the browser window.
-  const window = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width,
     height,
     minHeight: height,
@@ -31,9 +33,9 @@ function createWindow() {
 
   // and load the index.html of the app.
   if (isDev) {
-    window?.loadURL(url);
+    mainWindow?.loadURL(url);
   } else {
-    window?.loadFile(url);
+    mainWindow?.loadFile(url);
   }
   // Open the DevTools.
   // window.webContents.openDevTools();
@@ -41,19 +43,19 @@ function createWindow() {
   // For AppBar
   ipcMain.on('minimize', () => {
     // eslint-disable-next-line no-unused-expressions
-    window.isMinimized() ? window.restore() : window.minimize();
+    mainWindow.isMinimized() ? mainWindow.restore() : mainWindow.minimize();
     // or alternatively: win.isVisible() ? win.hide() : win.show()
   });
   ipcMain.on('maximize', () => {
     // eslint-disable-next-line no-unused-expressions
-    window.isMaximized() ? window.restore() : window.maximize();
+    mainWindow.isMaximized() ? mainWindow.restore() : mainWindow.maximize();
   });
 
   ipcMain.on('close', () => {
     window.close();
   });
 
-  return window;
+  return mainWindow;
 }
 
 // This method will be called when Electron has finished
@@ -76,9 +78,15 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit();
 });
 
+async function sender(channel: string, ...args: any[]) {
+  mainWindow.webContents.send(channel, args);
+}
+
+sender('', undefined); // To avoid unused variable error
+
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
-ipcMain.on('FetchUserData', async (event: IpcMainEvent, RobloxCookie: string) => {
+ipcMain.on('FetchUserData', async (event, RobloxCookie: string) => {
   const userData = await fetchUserData(RobloxCookie);
   if (!userData) return;
 
