@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 // eslint-disable-next-line import/no-extraneous-dependencies
 import fetch, { Headers } from 'node-fetch';
-import { type UserData } from '../src/types/type';
+import { Friends, type UserData } from '../src/types/type';
 
 const fetchUserData = async (cookie: string) => {
   const myHeaders = new Headers();
@@ -29,4 +29,18 @@ const fetchUserData = async (cookie: string) => {
   }
 };
 
-export { fetchUserData };
+const fetchFriends = async (userId: number) => {
+  const response = await fetch(`https://friends.roblox.com/v1/users/${userId}/friends`, {
+    method: 'GET'
+  });
+
+  try {
+    const data = await response.json();
+    return data as Friends;
+  } catch (error) {
+    console.error('An error occurred while fetching friends:', error);
+    return false;
+  }
+};
+
+export { fetchUserData, fetchFriends };
