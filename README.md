@@ -87,7 +87,7 @@ If this is not the case and you encounter an error. Please open a result.
 
 - [@kanosy](https://github.com/kanosy88) - Initial work
 
-See also the list of [contributors](https://github.com/kanosy88/RobloxManager/graphs/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/kanosy88/Severion/graphs/contributors) who participated in this project.
 
 ## 🎉 Acknowledgements <a name = "acknowledgement"></a>
 
