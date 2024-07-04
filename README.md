@@ -81,7 +81,7 @@ If this is not the case and you encounter an error. Please open a result.
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
-- [Electron Template](https://github.com/maxstue/vite-reactts-electron-starter) - Template
+- [Electron](https://github.com/alex8088/electron-vite) - Template
 
 ## ✍️ Authors <a name = "authors"></a>
 
