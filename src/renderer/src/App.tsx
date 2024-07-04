@@ -6,7 +6,7 @@ import MainLoop from './MainLoop'
 
 function App(): JSX.Element {
   const [userData, setUserData] = useState<UserData | null>(null)
-  const [_, setFriends] = useState<Friends | null>(null)
+  const [friends, setFriends] = useState<Friends | null>(null)
   const [robloxCookie, setrobloxCookie] = useState<string>('')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,6 +46,12 @@ function App(): JSX.Element {
               <h1 className="text-3xl font-semibold text-gray-50">
                 Connected to{' '}
                 <span className="font-bold text-violet-300">{userData.displayName}</span>{' '}
+              </h1>
+            )}
+            {friends && (
+              <h1 className="text-3xl font-semibold text-gray-50">
+                Friends count:{' '}
+                <span className="font-bold text-violet-300">{friends.data.length}</span>
               </h1>
             )}
             {!userData && (
