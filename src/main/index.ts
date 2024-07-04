@@ -1,8 +1,8 @@
-import { app, shell, BrowserWindow, ipcMain, Tray, nativeImage } from 'electron'
+import { app, shell, BrowserWindow, ipcMain, Tray, nativeImage, Menu } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
-import { fetchUserData } from './RobloxApi'
+import { fetchFriends, fetchUserData } from './RobloxApi'
 
 function createWindow(): void {
   // Create the browser window.
@@ -46,6 +46,28 @@ app.whenReady().then(() => {
   const TrayIcon = nativeImage.createFromPath(icon)
   tray = new Tray(TrayIcon)
 
+  tray.setToolTip('Severion')
+  tray.setTitle('Severion')
+
+  tray.setContextMenu(
+    Menu.buildFromTemplate([
+      {
+        label: 'Show',
+        click: () => {
+          BrowserWindow.getAllWindows().forEach((window) => {
+            window.show()
+          })
+        }
+      },
+      {
+        label: 'Exit',
+        click: () => {
+          app.quit()
+        }
+      }
+    ])
+  )
+
   // Set app user model id for windows
   electronApp.setAppUserModelId('com.electron')
 
@@ -66,11 +88,19 @@ app.whenReady().then(() => {
     return UserData
   })
 
+  ipcMain.handle('fetchFriends', async (event, userId) => {
+    const Friends = await fetchFriends(userId)
+    if (!Friends) {
+      console.error('Failed to fetch friends')
+      return undefined
+    }
+    return Friends
+  })
+
   ipcMain.handle('minimize', () => {
     const focusedWindow = BrowserWindow.getFocusedWindow()
     if (focusedWindow) {
       focusedWindow.minimize()
-      focusedWindow.hide()
     }
   })
 
@@ -82,6 +112,18 @@ app.whenReady().then(() => {
       } else {
         focusedWindow.maximize()
       }
+    }
+  })
+
+  ipcMain.handle('hide', () => {
+    const focusedWindow = BrowserWindow.getFocusedWindow()
+    if (focusedWindow) {
+      focusedWindow.hide()
+      tray.displayBalloon({
+        title: 'Severion',
+        content: 'Severion is running in the background',
+        iconType: 'info'
+      })
     }
   })
 

@@ -14,7 +14,16 @@ function App(): JSX.Element {
       if (!UserData) {
         Notify('Error', 'Failed to fetch user data')
       }
-      Notify('Success', `User ID: ${UserData.id}`)
+      setUserData(UserData)
+
+      window.electron.ipcRenderer.invoke('fetchFriends', UserData.id).then((Friends: Friends) => {
+        if (!Friends) {
+          Notify('Error', 'Failed to fetch friends')
+        }
+        setFriends(Friends)
+      })
+
+      Notify('Success', `Connected to ${UserData.displayName}`)
     })
   }
 
