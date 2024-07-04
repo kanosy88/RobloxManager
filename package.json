@@ -4,7 +4,7 @@
   "license": "MIT",
   "main": "main/electron/index.js",
   "scripts": {
-    "dev": "concurrently \"bun dev:vite\" \" bun dev:electron\"",
+    "dev": "concurrently \"npm run dev:vite\" \" npm run dev:electron\"",
     "dev:vite": "vite",
     "dev:electron": "npm run build:electron && electron .",
     "build": "npm run build:vite && npm run build:electron",
