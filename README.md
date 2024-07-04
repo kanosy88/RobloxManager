@@ -3,7 +3,7 @@
  <img width=200px height=200px src="https://i.imgur.com/O5EXdj2.jpeg" alt="Project logo"></a>
 </p>
 
-<h3 align="center">Roblox Manager</h3>
+<h3 align="center">Severion</h3>
 
 <div align="center">
 
@@ -14,7 +14,7 @@
 
 ---
 
-<p align="center"> Roblox Manager is an app that lets you receive notifications when your friends change their status on Roblox.
+<p align="center"> Severion is an app that lets you receive notifications when your friends change their status on Roblox.
     <br>
 </p>
 
@@ -31,7 +31,7 @@
 
 ## 🧐 About <a name = "about"></a>
 
-Roblox Manager is an app that lets you receive notifications when your friends change their status on Roblox. Like Steam notifications.
+Severion is an app that lets you receive notifications when your friends change their status on Roblox. Like Steam notifications.
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
@@ -46,13 +46,13 @@ A step by step series of examples that tell you how to get a development env run
 To start cloning the GitHub repertoire on your PC
 
 ```
-git clone https://github.com/kanosy88/RobloxManager.git
+git clone repo
 ```
 
 Then go to the file
 
 ```
-cd ./RobloxManager
+cd ./repo
 ```
 
 Install all dependence
