@@ -20,12 +20,14 @@ function App(): JSX.Element {
     window.electron.ipcRenderer.invoke('fetchUserData', cookie).then((UserData: UserData) => {
       if (!UserData) {
         Notify('Error', 'Failed to fetch user data')
+        return
       }
       setUserData(UserData)
 
       window.electron.ipcRenderer.invoke('fetchFriends', UserData.id).then((Friends: Friends) => {
         if (!Friends) {
           Notify('Error', 'Failed to fetch friends')
+          return
         }
         setFriends(Friends)
       })

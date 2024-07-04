@@ -1,15 +1,15 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import fetch, { Headers } from 'node-fetch'
-import { Friends, type UserData } from './types/RobloxApi'
+import { Friends, UserPresences, type UserData } from './types/RobloxApi'
 
-const fetchUserData = async (cookie: string) => {
+const fetchUserData = async (cookie: string): Promise<false | UserData> => {
   const myHeaders = new Headers()
   myHeaders.append('cookie', `.ROBLOSECURITY=${cookie};`)
 
   const requestOptions = {
     method: 'GET',
-    headers: myHeaders,
-    redirect: undefined
+    headers: myHeaders
   }
 
   try {
@@ -35,7 +35,7 @@ const fetchUserData = async (cookie: string) => {
   }
 }
 
-const fetchFriends = async (userId: number) => {
+const fetchFriends = async (userId: number): Promise<false | Friends> => {
   const response = await fetch(`https://friends.roblox.com/v1/users/${userId}/friends`, {
     method: 'GET'
   })
@@ -49,4 +49,26 @@ const fetchFriends = async (userId: number) => {
   }
 }
 
-export { fetchUserData, fetchFriends }
+const getPresences = async (userIds: number[], cookie: string): Promise<false | UserPresences> => {
+  const myHeaders = new Headers()
+  myHeaders.append('cookie', `.ROBLOSECURITY=${cookie};`)
+  myHeaders.append('Content-Type', 'application/json')
+
+  const requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: JSON.stringify({ userIds })
+  }
+
+  const response = await fetch('https://presence.roblox.com/v1/presence/users', requestOptions)
+
+  try {
+    const data = await response.json()
+    return data as UserPresences
+  } catch (error) {
+    console.error('An error occurred while fetching presence:', error)
+    return false
+  }
+}
+
+export { fetchUserData, fetchFriends, getPresences }
