@@ -12,6 +12,10 @@ function App(): JSX.Element {
     setrobloxCookie(e.target.value)
   }
 
+  const handleHide = async () => {
+    window.electron.ipcRenderer.invoke('hide')
+  }
+
   const handleInit = async (cookie: string) => {
     window.electron.ipcRenderer.invoke('fetchUserData', cookie).then((UserData: UserData) => {
       if (!UserData) {
@@ -44,10 +48,18 @@ function App(): JSX.Element {
               </h1>
             )}
             {friends && (
-              <h1 className="text-3xl font-semibold text-gray-50">
-                Friends count:{' '}
-                <span className="font-bold text-violet-300">{friends.data.length}</span>
-              </h1>
+              <>
+                <h1 className="text-3xl font-semibold text-gray-50">
+                  Friends count:{' '}
+                  <span className="font-bold text-violet-300">{friends.data.length}</span>
+                </h1>
+                <button
+                  onClick={handleHide}
+                  className="bg-violet-700 hover:bg-violet-400 p-2 rounded text-white"
+                >
+                  Hide the app
+                </button>
+              </>
             )}
             {!userData && (
               <button
