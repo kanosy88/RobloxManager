@@ -2,7 +2,7 @@ import { app, shell, BrowserWindow, ipcMain, Tray, nativeImage, Menu } from 'ele
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
-import { fetchFriends, fetchUserData } from './RobloxApi'
+import { fetchFriends, fetchPresences, fetchUserData } from './RobloxApi'
 
 function createWindow(): void {
   // Create the browser window.
@@ -97,6 +97,15 @@ app.whenReady().then(() => {
       return undefined
     }
     return Friends
+  })
+
+  ipcMain.handle('fetchPresences', async (event, userIds, cookie) => {
+    const UserPresences = await fetchPresences(userIds, cookie)
+    if (!UserPresences) {
+      console.error('Failed to fetch user presences')
+      return undefined
+    }
+    return UserPresences
   })
 
   ipcMain.handle('minimize', () => {

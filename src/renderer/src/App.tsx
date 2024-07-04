@@ -2,6 +2,7 @@ import { Friends, UserData } from './types/RobloxApi'
 import { Notify } from './components/notify'
 import { useState } from 'react'
 import AppBar from './AppBar'
+import MainLoop from './MainLoop'
 
 function App(): JSX.Element {
   const [userData, setUserData] = useState<UserData | null>(null)
@@ -30,6 +31,8 @@ function App(): JSX.Element {
           return
         }
         setFriends(Friends)
+
+        MainLoop(Friends, cookie)
       })
 
       Notify('Success', `Connected to ${UserData.displayName}`)

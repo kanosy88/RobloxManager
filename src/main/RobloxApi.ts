@@ -49,7 +49,10 @@ const fetchFriends = async (userId: number): Promise<false | Friends> => {
   }
 }
 
-const getPresences = async (userIds: number[], cookie: string): Promise<false | UserPresences> => {
+const fetchPresences = async (
+  userIds: number[],
+  cookie: string
+): Promise<false | UserPresences> => {
   const myHeaders = new Headers()
   myHeaders.append('cookie', `.ROBLOSECURITY=${cookie};`)
   myHeaders.append('Content-Type', 'application/json')
@@ -71,4 +74,4 @@ const getPresences = async (userIds: number[], cookie: string): Promise<false | 
   }
 }
 
-export { fetchUserData, fetchFriends, getPresences }
+export { fetchUserData, fetchFriends, fetchPresences }
