@@ -22,6 +22,10 @@ function AppBar(): JSX.Element {
     handleMaximize()
   }
 
+  const handleHide = (): void => {
+    window.electron.ipcRenderer.invoke('hide')
+  }
+
   return (
     <div className="py-0.5 flex justify-between draggable bg-slate-700">
       <div className="inline-flex">
@@ -39,7 +43,7 @@ function AppBar(): JSX.Element {
           {isMaximize ? '\u2752' : '⃞'}
         </button>
         <button
-          onClick={window.close}
+          onClick={handleHide}
           className="undraggable px-4 pt-1 hover:bg-red-500 hover:text-white"
         >
           &#10005;
