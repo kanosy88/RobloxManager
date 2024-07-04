@@ -24,7 +24,7 @@ function createWindow() {
       nodeIntegration: true,
       contextIsolation: true,
       devTools: true,
-      webSecurity: false
+      webSecurity: true
     }
   });
 
@@ -38,7 +38,7 @@ function createWindow() {
     mainWindow?.loadFile(url);
   }
   // Open the DevTools.
-  // window.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
 
   // For AppBar
   ipcMain.on('minimize', () => {
