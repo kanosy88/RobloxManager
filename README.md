@@ -46,13 +46,13 @@ A step by step series of examples that tell you how to get a development env run
 To start cloning the GitHub repertoire on your PC
 
 ```
-git clone repo
+git clone https://github.com/kanosy88/RobloxManager.git
 ```
 
 Then go to the file
 
 ```
-cd ./repo
+cd ./RobloxManager
 ```
 
 Install all dependence
