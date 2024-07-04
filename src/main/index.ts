@@ -81,7 +81,7 @@ app.whenReady().then(() => {
   })
 
   // IPC Handlers
-  ipcMain.handle('fetchUserData', async (event, cookie) => {
+  ipcMain.handle('fetchUserData', async (_, cookie) => {
     const UserData = await fetchUserData(cookie)
     if (!UserData) {
       console.error('Failed to fetch user data')
@@ -90,7 +90,7 @@ app.whenReady().then(() => {
     return UserData
   })
 
-  ipcMain.handle('fetchFriends', async (event, userId) => {
+  ipcMain.handle('fetchFriends', async (_, userId) => {
     const Friends = await fetchFriends(userId)
     if (!Friends) {
       console.error('Failed to fetch friends')
@@ -99,7 +99,7 @@ app.whenReady().then(() => {
     return Friends
   })
 
-  ipcMain.handle('fetchPresences', async (event, userIds, cookie) => {
+  ipcMain.handle('fetchPresences', async (_, userIds, cookie) => {
     const UserPresences = await fetchPresences(userIds, cookie)
     if (!UserPresences) {
       console.error('Failed to fetch user presences')
