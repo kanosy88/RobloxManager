@@ -18,7 +18,7 @@ function App() {
     if (!listenerAttached.current) {
       window.Main.on('FetchUserData', (_UserData: UserData) => {
         if (!_UserData) {
-          Notify('RobloxManager', 'Failed to fetch user data');
+          Notify('RobloxManager', 'Failed to fetch user data, please check your cookie');
           return;
         }
 

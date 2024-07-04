@@ -89,7 +89,10 @@ sender('', undefined); // To avoid unused variable error
 // code. You can also put them in separate files and require them here.
 ipcMain.on('FetchUserData', async (event, RobloxCookie: string) => {
   const userData = await fetchUserData(RobloxCookie);
-  if (!userData) return;
+  if (!userData) {
+    event.sender.send('FetchUserData', undefined);
+    return;
+  }
 
   event.sender.send('FetchUserData', userData);
 
