@@ -23,6 +23,8 @@
 - [📝 Table of Contents](#-table-of-contents)
 - [🧐 About ](#-about-)
 - [🏁 Getting Started ](#-getting-started-)
+  - [Features](#features)
+  - [Features a venir](#features-a-venir)
   - [Installing](#installing)
 - [🎈 Usage ](#-usage-)
 - [⛏️ Built Using ](#️-built-using-)
@@ -38,6 +40,16 @@ Severion is an app that lets you receive notifications when your friends change 
 This application still under development, but a first 1.0 release is on the way very soon.
 
 For the moment, the only way to test the application is to download this github repo and perform the following instructions.
+
+### Features
+
+- Possibility to run it in the background (Do not need to have the window constantly open)
+- Receive notification when your friends join a game
+
+### Features a venir
+
+- Disable notification of a particular friends
+- Join the friend's server when click on the notification
 
 ### Installing
 
