@@ -132,7 +132,7 @@ app.whenReady().then(() => {
       focusedWindow.hide()
       tray.displayBalloon({
         title: 'Severion',
-        content: 'Severion is running in the background',
+        content: 'Severion is running in the background, click the tray icon to show or close it.',
         iconType: 'info'
       })
     }

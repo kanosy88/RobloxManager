@@ -6,15 +6,11 @@ import MainLoop from './MainLoop'
 
 function App(): JSX.Element {
   const [userData, setUserData] = useState<UserData | null>(null)
-  const [friends, setFriends] = useState<Friends | null>(null)
+  const [_, setFriends] = useState<Friends | null>(null)
   const [robloxCookie, setrobloxCookie] = useState<string>('')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setrobloxCookie(e.target.value)
-  }
-
-  const handleHide = async () => {
-    window.electron.ipcRenderer.invoke('hide')
   }
 
   const handleInit = async (cookie: string) => {
@@ -51,20 +47,6 @@ function App(): JSX.Element {
                 Connected to{' '}
                 <span className="font-bold text-violet-300">{userData.displayName}</span>{' '}
               </h1>
-            )}
-            {friends && (
-              <>
-                <h1 className="text-3xl font-semibold text-gray-50">
-                  Friends count:{' '}
-                  <span className="font-bold text-violet-300">{friends.data.length}</span>
-                </h1>
-                <button
-                  onClick={handleHide}
-                  className="bg-violet-700 hover:bg-violet-400 p-2 rounded text-white"
-                >
-                  Hide the app
-                </button>
-              </>
             )}
             {!userData && (
               <button
