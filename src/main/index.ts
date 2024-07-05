@@ -52,13 +52,11 @@ app.whenReady().then(() => {
   tray.setToolTip('Severion')
   tray.setTitle('Severion')
 
-  // TODO: Typed context menu
-
   tray.setContextMenu(
     Menu.buildFromTemplate([
       {
         label: 'Show',
-        click: () => {
+        click: (): void => {
           BrowserWindow.getAllWindows().forEach((window) => {
             window.show()
           })
@@ -66,7 +64,7 @@ app.whenReady().then(() => {
       },
       {
         label: 'Exit',
-        click: () => {
+        click: (): void => {
           app.quit()
         }
       }
