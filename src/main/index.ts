@@ -1,12 +1,13 @@
 import { app, shell, BrowserWindow, ipcMain, Tray, nativeImage, Menu } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
-import icon from '../../resources/icon.png?asset'
+import icon from '../../resources/AppIcon.png?asset'
 import { fetchFriends, fetchPresences, fetchUserData } from './RobloxApi'
 
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
+    icon: icon,
     width: 900,
     height: 670,
     minWidth: 400,
@@ -51,6 +52,8 @@ app.whenReady().then(() => {
   tray.setToolTip('Severion')
   tray.setTitle('Severion')
 
+  // TODO: Typed context menu
+
   tray.setContextMenu(
     Menu.buildFromTemplate([
       {
@@ -71,7 +74,7 @@ app.whenReady().then(() => {
   )
 
   // Set app user model id for windows
-  electronApp.setAppUserModelId('com.electron')
+  electronApp.setAppUserModelId('Severion')
 
   // Default open or close DevTools by F12 in development
   // and ignore CommandOrControl + R in production.
