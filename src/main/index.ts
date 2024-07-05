@@ -4,6 +4,13 @@ import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/AppIcon.png?asset'
 import { fetchFriends, fetchPresences, fetchUserData } from './RobloxApi'
 
+// Prevent multiple instances of the app
+const gotTheLock = app.requestSingleInstanceLock()
+
+if (!gotTheLock) {
+  app.quit()
+}
+
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({

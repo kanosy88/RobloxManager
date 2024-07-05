@@ -9,6 +9,8 @@ function App(): JSX.Element {
   const [friends, setFriends] = useState<Friends | null>(null)
   const [robloxCookie, setrobloxCookie] = useState<string>('')
 
+  // TODO: Add a way to save the cookie
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setrobloxCookie(e.target.value)
   }
