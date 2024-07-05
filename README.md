@@ -45,6 +45,7 @@ Severion is an app that lets you receive notifications when your friends change 
 
 - Disable notification of a particular friends
 - Join the friend's server when click on the notification
+- Save cookies after each launch (safe way)
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
