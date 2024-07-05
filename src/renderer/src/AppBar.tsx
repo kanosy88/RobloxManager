@@ -27,11 +27,7 @@ function AppBar(): JSX.Element {
   }
 
   return (
-    <div className="py-0.5 flex justify-between draggable bg-slate-700">
-      <div className="inline-flex">
-        <img className="h-6 lg:-ml-2" src={Icon} alt="Icon of Electron" />
-        <p className="text-xs md:pt-1 md:-ml-1 lg:-ml-2">Severion</p>
-      </div>
+    <div className="py-0.5 flex flex-row-reverse draggable bg-slate-700">
       <div className="inline-flex -mt-1">
         <button
           onClick={handleMinimize}
