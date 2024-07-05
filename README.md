@@ -22,11 +22,12 @@
 
 - [📝 Table of Contents](#-table-of-contents)
 - [🧐 About ](#-about-)
+- [⚙️ Features](#️-features)
+- [🛠️ Upcoming Features](#️-upcoming-features)
 - [🏁 Getting Started ](#-getting-started-)
-  - [Features](#features)
-  - [Upcoming Features](#upcoming-features)
   - [Installing](#installing)
 - [🎈 Usage ](#-usage-)
+- [Screenshot](#screenshot)
 - [⛏️ Built Using ](#️-built-using-)
 - [✍️ Authors ](#️-authors-)
 - [🎉 Acknowledgements ](#-acknowledgements-)
@@ -35,21 +36,21 @@
 
 Severion is an app that lets you receive notifications when your friends change their status on Roblox. Like Steam notifications.
 
+## ⚙️ Features
+
+- Possibility to run it in the background (Do not need to have the window constantly open)
+- Receive notification when your friends join a game
+
+## 🛠️ Upcoming Features
+
+- Disable notification of a particular friends
+- Join the friend's server when click on the notification
+
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
 This application still under development, but a first 1.0 release is on the way very soon.
 
 For the moment, the only way to test the application is to download this github repo and perform the following instructions.
-
-### Features
-
-- Possibility to run it in the background (Do not need to have the window constantly open)
-- Receive notification when your friends join a game
-
-### Upcoming Features
-
-- Disable notification of a particular friends
-- Join the friend's server when click on the notification
 
 ### Installing
 
@@ -90,6 +91,11 @@ npm run build:unpack
 If everything is well installed you should receive notification each time one of your friends changes status after launching the application.
 
 If this is not the case and you encounter an error. Please open a result.
+
+## Screenshot
+
+<img src="./screenshots/Screen1.png" alt="Screen of the app">
+<img src="./screenshots/Screen2.png" alt="Screen of a notification">
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
