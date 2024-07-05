@@ -9,11 +9,11 @@ function App(): JSX.Element {
   const [friends, setFriends] = useState<Friends | null>(null)
   const [robloxCookie, setrobloxCookie] = useState<string>('')
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setrobloxCookie(e.target.value)
   }
 
-  const handleInit = async (cookie: string) => {
+  const handleInit = async (cookie: string): Promise<void> => {
     window.electron.ipcRenderer.invoke('fetchUserData', cookie).then((UserData: UserData) => {
       if (!UserData) {
         Notify('Error', 'Failed to fetch user data')
