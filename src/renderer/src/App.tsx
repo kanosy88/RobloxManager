@@ -39,7 +39,6 @@ function App(): JSX.Element {
     <>
       <div className="flex flex-col h-screen">
         <AppBar />
-
         <div className="flex-auto">
           <div className=" flex flex-col justify-center items-center h-full bg-gray-800 space-y-4">
             {userData && (
@@ -71,6 +70,9 @@ function App(): JSX.Element {
               </div>
             )}
           </div>
+        </div>
+        <div className="bg-gray-800 p-2">
+          <h2 className="text-sm  font-bold text-gray-500 cursor-help">Version 1.0</h2>
         </div>
       </div>
     </>
