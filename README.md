@@ -17,6 +17,7 @@
 <p align="center"> Severion is an app that lets you receive notifications when your friends change their status on Roblox.
     <br>
 </p>
+<h4><a href="https://github.com/kanosy88/Severion/releases/tag/v1.0.0">Install</a></h4>
 
 ## 📝 Table of Contents
 
@@ -49,9 +50,9 @@ Severion is an app that lets you receive notifications when your friends change 
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
-This application still under development, but a first 1.0 release is on the way very soon.
+If you want to install the application, please install the first [release](https://github.com/kanosy88/Severion/releases/tag/v1.0.0).
 
-For the moment, the only way to test the application is to download this github repo and perform the following instructions.
+If you want to see how the application has been built and/or modify it with your preferences you can follow the instructions below.
 
 ### Installing
 
