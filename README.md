@@ -24,7 +24,7 @@
 - [🧐 About ](#-about-)
 - [🏁 Getting Started ](#-getting-started-)
   - [Features](#features)
-  - [Features a venir](#features-a-venir)
+  - [Upcoming Features](#upcoming-features)
   - [Installing](#installing)
 - [🎈 Usage ](#-usage-)
 - [⛏️ Built Using ](#️-built-using-)
@@ -46,7 +46,7 @@ For the moment, the only way to test the application is to download this github 
 - Possibility to run it in the background (Do not need to have the window constantly open)
 - Receive notification when your friends join a game
 
-### Features a venir
+### Upcoming Features
 
 - Disable notification of a particular friends
 - Join the friend's server when click on the notification
@@ -58,13 +58,13 @@ A step by step series of examples that tell you how to get a development env run
 To start cloning the GitHub repertoire on your PC
 
 ```
-git clone repo
+git clone https://github.com/kanosy88/Severion.git
 ```
 
 Then go to the file
 
 ```
-cd ./repo
+cd ./Severion
 ```
 
 Install all dependence
