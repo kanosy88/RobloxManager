@@ -1,6 +1,5 @@
 /* eslint-disable prettier/prettier */
 import { useState } from 'react'
-import Icon from './assets/electron.svg'
 
 function AppBar(): JSX.Element {
   const [isMaximize, setMaximize] = useState(false)

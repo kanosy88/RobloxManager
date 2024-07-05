@@ -72,7 +72,7 @@ function App(): JSX.Element {
           </div>
         </div>
         <div className="bg-gray-800 p-2">
-          <h2 className="text-sm  font-bold text-gray-500 cursor-help">Version 1.0</h2>
+          <h2 className="text-sm  font-bold text-gray-500 cursor-default">Version 1.0</h2>
         </div>
       </div>
     </>
