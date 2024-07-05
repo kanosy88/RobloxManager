@@ -12,6 +12,7 @@ function createWindow(): void {
     height: 275,
     minWidth: 630,
     minHeight: 275,
+    transparent: true,
     show: false,
     frame: false,
     autoHideMenuBar: true,

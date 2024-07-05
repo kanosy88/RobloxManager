@@ -26,11 +26,14 @@ function AppBar(): JSX.Element {
   }
 
   return (
-    <div className="py-0.5 flex flex-row-reverse draggable bg-slate-700">
+    <div className="py-0.5 flex justify-between text-gray-600 draggable bg-[#101010] border-b border-gray-900">
+      <div className="ml-2">
+        <h1 className="font-semibold flex">Roblox Friend Tracker</h1>
+      </div>
       <div className="inline-flex -mt-1">
         <button
           onClick={handleMinimize}
-          className="undraggable md:px-4 lg:px-3 pt-1 hover:bg-gray-300"
+          className="undraggable md:px-4 lg:px-3 pt-1 px-4 hover:bg-gray-300"
         >
           &#8211;
         </button>

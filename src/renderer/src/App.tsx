@@ -40,28 +40,25 @@ function App(): JSX.Element {
       <div className="flex flex-col h-screen">
         <AppBar />
         <div className="flex-auto">
-          <div className=" flex flex-col justify-center items-center h-full bg-gray-800 space-y-4">
+          <div className=" flex flex-col justify-center items-center h-full space-y-4">
             {userData && (
               <h1 className="text-3xl font-semibold text-gray-50">
                 Connected to{' '}
-                <span className="font-bold text-violet-300">{userData.displayName}</span>{' '}
+                <a
+                  href={`https://www.roblox.com/users/${userData.id}/profile`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-bold text-gray-600"
+                >
+                  {userData.displayName}
+                </a>{' '}
               </h1>
             )}
             {friends && (
               <h1 className="text-3xl font-semibold text-gray-50">
-                Friends count:{' '}
-                <span className="font-bold text-violet-300">{friends.data.length}</span>
+                You have <span className="font-bold text-gray-600">{friends.data.length}</span>{' '}
+                friends
               </h1>
-            )}
-            {!userData && (
-              <button
-                onClick={() => {
-                  handleInit(robloxCookie)
-                }}
-                className="bg-violet-700 hover:bg-violet-400 p-2 rounded text-white"
-              >
-                Launch Notifier
-              </button>
             )}
             {!userData && (
               <div className="flex flex-col gap-2">
@@ -69,10 +66,20 @@ function App(): JSX.Element {
                 <input type="text" value={robloxCookie} onChange={handleChange} />
               </div>
             )}
+            {!userData && (
+              <button
+                onClick={() => {
+                  handleInit(robloxCookie)
+                }}
+                className="bg-slate-600 hover:bg-slate-950 transition-all p-2 text-white"
+              >
+                Launch Notifier
+              </button>
+            )}
           </div>
         </div>
-        <div className="bg-gray-800 p-2">
-          <h2 className="text-sm  font-bold text-gray-500 cursor-default">Version 1.0</h2>
+        <div className="p-2">
+          <h2 className="text-sm  font-bold text-gray-600 cursor-default">Version 1.0.1</h2>
         </div>
       </div>
     </>
