@@ -82,7 +82,7 @@ npm run dev
 If you want to have an executable version of the application (.exe) write this
 
 ```
-npm run dist
+npm run build:unpack
 ```
 
 ## 🎈 Usage <a name="usage"></a>
