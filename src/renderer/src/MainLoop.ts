@@ -18,6 +18,15 @@ const GetPresence = async (
     })
 }
 
+const SendNotification = async (type: number, user: TrackedUser): Promise<void> => {
+  if (!user.presence) return
+
+  // if (type === 0) Notify('Status Changes', `${user.name} is offline`) // prettier-ignore
+  // if (type === 1) Notify('Status Changes', `${user.name} is online!`) // prettier-ignore // TODO: Don't send notification if user just left the game
+  if (type === 2) Notify('Status Changes', `${user.name} is now playing ${user.presence.lastLocation}!`) // prettier-ignore
+  if (type === 3) Notify('Status Changes', `${user.name} is on Studio!`) // prettier-ignore
+}
+
 async function MainLoop(friends: Friends, cookie: string): Promise<void> {
   async function GetCurrentUsersData(friends: Friends): Promise<TrackedUsers | undefined> {
     const presence = await GetPresence(
@@ -50,13 +59,13 @@ async function MainLoop(friends: Friends, cookie: string): Promise<void> {
       const last_user_data = last_users_data[id]
       const last_user_presence_type = last_user_data?.presence?.userPresenceType
 
-      if (last_user_presence_type !== current_user_data.presence?.userPresenceType) {
-        if (current_user_data.presence?.userPresenceType === 2) {
-          Notify(
-            'Status Changes',
-            `${current_user_data.name} is now playing ${current_user_data.presence.lastLocation}!`
-          )
-        }
+      const current_user_presence_type = current_user_data.presence?.userPresenceType
+
+      if (!current_user_presence_type) return
+
+      if (last_user_presence_type !== current_user_presence_type) {
+        if (!last_user_presence_type) return // Skip the first iteration
+        SendNotification(current_user_presence_type, current_user_data)
       }
     })
 
