@@ -1,6 +1,6 @@
 import { Friends, UserData } from './types/RobloxApi'
 import { Notify } from './components/notify'
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import AppBar from './AppBar'
 import MainLoop from './MainLoop'
 
@@ -8,34 +8,59 @@ function App(): JSX.Element {
   const [userData, setUserData] = useState<UserData | null>(null)
   const [friends, setFriends] = useState<Friends | null>(null)
   const [robloxCookie, setrobloxCookie] = useState<string>('')
+  const initCalled = useRef(false)
 
   // TODO: Add a way to save the cookie
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setrobloxCookie(e.target.value)
-  }
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => setrobloxCookie(e.target.value) // prettier-ignore
 
   const handleInit = async (cookie: string): Promise<void> => {
-    window.electron.ipcRenderer.invoke('fetchUserData', cookie).then((UserData: UserData) => {
-      if (!UserData) {
+    try {
+      const savedData: { [key: string]: string } =
+        await window.electron.ipcRenderer.invoke('readData')
+      if (savedData && savedData['cookie']) {
+        setrobloxCookie(savedData['cookie'])
+        cookie = savedData['cookie']
+      }
+
+      const userData: UserData = await window.electron.ipcRenderer.invoke('fetchUserData', cookie)
+      if (!userData) {
         Notify('Error', 'Failed to fetch user data')
         return
       }
-      setUserData(UserData)
+      setUserData(userData)
 
-      window.electron.ipcRenderer.invoke('fetchFriends', UserData.id).then((Friends: Friends) => {
-        if (!Friends) {
-          Notify('Error', 'Failed to fetch friends')
-          return
-        }
-        setFriends(Friends)
+      const friendsData: Friends = await window.electron.ipcRenderer.invoke(
+        'fetchFriends',
+        userData.id
+      )
+      if (!friendsData) {
+        Notify('Error', 'Failed to fetch friends')
+        return
+      }
+      setFriends(friendsData)
+      MainLoop(friendsData, cookie)
 
-        MainLoop(Friends, cookie)
-      })
-
-      Notify('Success', `Connected to ${UserData.displayName}`)
-    })
+      Notify('Success', `Connected to ${userData.displayName}`)
+      window.electron.ipcRenderer.invoke('saveData', 'cookie', cookie)
+    } catch (error) {
+      console.error('Initialization failed:', error)
+      Notify('Error', 'Initialization failed')
+    }
   }
+
+  useEffect(() => {
+    const initializeApp = async (): Promise<void> => {
+      if (initCalled.current) return // Prevent multiple calls
+      initCalled.current = true // Mark as called
+      const savedData: { [key: string]: string } =
+        await window.electron.ipcRenderer.invoke('readData')
+      if (savedData && savedData['cookie']) {
+        await handleInit(savedData['cookie'])
+      }
+    }
+    initializeApp()
+  }, [])
 
   return (
     <>

@@ -3,6 +3,8 @@ import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/AppIcon.png?asset'
 import { fetchFriends, fetchPresences, fetchUserData } from './RobloxApi'
+import { readData, saveData } from './DataHandler'
+import { error } from 'console'
 
 // Prevent multiple instances of the app
 const gotTheLock = app.requestSingleInstanceLock()
@@ -106,6 +108,17 @@ app.whenReady().then(() => {
       return undefined
     }
     return Friends
+  })
+
+  ipcMain.handle('saveData', async (_, key: string, data) => {
+    if (typeof key !== 'string') {
+      return error('saveData', 'key is not a string')
+    }
+    saveData(key, data)
+  })
+
+  ipcMain.handle('readData', async () => {
+    return readData()
   })
 
   ipcMain.handle('fetchPresences', async (_, userIds, cookie) => {
