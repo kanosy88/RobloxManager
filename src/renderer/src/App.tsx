@@ -10,8 +10,6 @@ function App(): JSX.Element {
   const [robloxCookie, setrobloxCookie] = useState<string>('')
   const initCalled = useRef(false)
 
-  // TODO: Add a way to save the cookie
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => setrobloxCookie(e.target.value) // prettier-ignore
 
   const handleInit = async (cookie: string): Promise<void> => {
@@ -47,6 +45,13 @@ function App(): JSX.Element {
       console.error('Initialization failed:', error)
       Notify('Error', 'Initialization failed')
     }
+  }
+
+  const HandleReset = (): void => {
+    setrobloxCookie('')
+    setUserData(null)
+    setFriends(null)
+    window.electron.ipcRenderer.invoke('saveData', 'cookie', '')
   }
 
   useEffect(() => {
@@ -90,7 +95,7 @@ function App(): JSX.Element {
             {!userData && (
               <div className="flex flex-col gap-2">
                 <h2 className="text-3xl font-semibold text-gray-50">Enter your roblox cookie</h2>
-                <input type="text" value={robloxCookie} onChange={handleChange} />
+                <input type="text" onChange={handleChange} />
               </div>
             )}
             {!userData && (
@@ -101,6 +106,14 @@ function App(): JSX.Element {
                 className="bg-slate-600 hover:bg-slate-950 transition-all p-2 text-white"
               >
                 Launch Notifier
+              </button>
+            )}
+            {userData && (
+              <button
+                onClick={HandleReset}
+                className="bg-slate-600 hover:bg-slate-950 transition-all p-2 text-white"
+              >
+                Reset
               </button>
             )}
           </div>

@@ -3,8 +3,6 @@
 import fetch, { Headers } from 'node-fetch'
 import { Friends, UserPresences, type UserData } from './types/RobloxApi'
 
-// TODO: Fix the first iteration bug in the main loop (the first iteration is always skipped)
-
 const fetchUserData = async (cookie: string): Promise<false | UserData> => {
   const myHeaders = new Headers()
   myHeaders.append('cookie', `.ROBLOSECURITY=${cookie};`)

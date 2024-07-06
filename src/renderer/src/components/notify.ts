@@ -2,16 +2,18 @@
 
 const Icon = '../../../resources/icon.png'
 
-const Notify = (title: string, Body: string): void => {
+const Notify = async (title: string, Body: string): Promise<Notification | null> => {
   const NotificationOption = {
     body: Body,
     icon: Icon
   }
 
-  Notification.requestPermission().then((result) => {
-    if (result === 'granted') return new Notification(title, NotificationOption)
+  const result = await Notification.requestPermission()
+  if (result === 'granted') {
+    return new Notification(title, NotificationOption)
+  } else {
     return null
-  })
+  }
 }
 
 export { Notify }

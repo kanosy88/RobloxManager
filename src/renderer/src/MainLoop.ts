@@ -23,7 +23,11 @@ const SendNotification = async (type: number, user: TrackedUser): Promise<void> 
 
   // if (type === 0) Notify('Status Changes', `${user.name} is offline`) // prettier-ignore
   // if (type === 1) Notify('Status Changes', `${user.name} is online!`) // prettier-ignore // TODO: Don't send notification if user just left the game
-  if (type === 2) Notify('Status Changes', `${user.name} is now playing ${user.presence.lastLocation}!`) // prettier-ignore
+  if (type === 2) {
+   const notification = await Notify('Status Changes', `${user.name} is now playing ${user.presence.lastLocation}!`) // Send notification
+   if (notification) notification.onclick = ():Promise<unknown> => window.electron.ipcRenderer.invoke('joinGame', user.presence?.placeId, user.presence?.gameId) // Open the game page when the notification is clicked
+  } // prettier-ignore
+
   if (type === 3) Notify('Status Changes', `${user.name} is on Studio!`) // prettier-ignore
 }
 

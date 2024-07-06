@@ -101,6 +101,10 @@ app.whenReady().then(() => {
     return UserData
   })
 
+  ipcMain.handle('joinGame', async (_, placeId: number, gameId: number) =>
+    shell.openExternal(`roblox://placeId=${placeId}&gameInstanceId=${gameId}/`)
+  )
+
   ipcMain.handle('fetchFriends', async (_, userId) => {
     const Friends = await fetchFriends(userId)
     if (!Friends) {
