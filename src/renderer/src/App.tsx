@@ -106,7 +106,7 @@ function App(): JSX.Element {
           </div>
         </div>
         <div className="p-2">
-          <h2 className="text-sm  font-bold text-gray-600 cursor-default">Version 1.0.1</h2>
+          <h2 className="text-sm  font-bold text-gray-600 cursor-default">Version 1.1</h2>
         </div>
       </div>
     </>
