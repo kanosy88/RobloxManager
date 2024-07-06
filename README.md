@@ -42,7 +42,7 @@ Severion is an app that lets you receive notifications when your friends change 
 - Possibility to run it in the background (Do not need to have the window constantly open)
 - Receive notification when your friends join a game or when they launch Roblox Studio
 - Join the friend's server when click on the notification
-- Save cookies after each launch (safe way)
+- Save your cookies encrypt after each launch of the application with to the Electron encryption module [safeStorage](https://www.electronjs.org/fr/docs/latest/api/safe-storage#m%C3%A9thodes)
 
 ## 🛠️ Upcoming Features
 
