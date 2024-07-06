@@ -40,13 +40,13 @@ Severion is an app that lets you receive notifications when your friends change 
 ## ⚙️ Features
 
 - Possibility to run it in the background (Do not need to have the window constantly open)
-- Receive notification when your friends join a game
+- Receive notification when your friends join a game or when they launch Roblox Studio
+- Join the friend's server when click on the notification
+- Save cookies after each launch (safe way)
 
 ## 🛠️ Upcoming Features
 
 - Disable notification of a particular friends
-- Join the friend's server when click on the notification
-- Save cookies after each launch (safe way)
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
@@ -101,7 +101,7 @@ If this is not the case and you encounter an error. Please open a result.
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
-- [Electron](https://github.com/alex8088/electron-vite) - Template
+- [Electron-Vite](https://github.com/alex8088/electron-vite) - Template
 
 ## ✍️ Authors <a name = "authors"></a>
 
@@ -112,3 +112,4 @@ See also the list of [contributors](https://github.com/kanosy88/Severion/graphs/
 ## 🎉 Acknowledgements <a name = "acknowledgement"></a>
 
 - [@LxstCxn](https://github.com/LxstCxn/Roblox-notify-tracker) - Idea
+- [@Unknow_Reddituser](https://www.reddit.com/r/roblox/comments/15srwqa/i_found_the_roblox_launch_protocol/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button) - For having found the Roblox protocol
